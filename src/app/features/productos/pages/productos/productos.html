@@ -1,42 +1,71 @@
-<h2>Productos</h2>
+<div class="productos-container">
 
-<button (click)="getProductos()">Recargar</button>
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>Productos</h1>
+      <p>Gestiona el catálogo de productos</p>
+    </div>
 
-<br /><br />
+    <button class="btn-primary">
+      + Nuevo
+    </button>
+  </div>
 
-<table border="1" width="100%">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Marca</th>
-      <th>Modelo</th>
-      <th>Precio</th>
-      <th>Estado</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
+  <!-- CARD -->
+  <div class="card">
 
-  <tbody>
-    <tr *ngFor="let p of productos">
-      <td>{{ p.id }}</td>
-      <td>{{ p.nombre }}</td>
-      <td>{{ p.marca }}</td>
-      <td>{{ p.modelo }}</td>
-      <td>{{ p.precio_referencial }}</td>
-      <td>
-        <span *ngIf="p.activo">Activo</span>
-        <span *ngIf="!p.activo">Inactivo</span>
-      </td>
-      <td>
-        <button (click)="desactivar(p.id)" *ngIf="p.activo">
-          Desactivar
-        </button>
+    <!-- BUSCADOR -->
+    <input 
+      type="text" 
+      placeholder="Buscar productos..." 
+      class="search"
+    />
 
-        <button (click)="activar(p.id)" *ngIf="!p.activo">
-          Activar
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <!-- TABLA -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Compra</th>
+            <th>Venta</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let p of productos">
+            <td class="codigo">{{ p.codigo }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.categoria }}</td>
+            <td>S/ {{ p.precioCompra }}</td>
+            <td>S/ {{ p.precioVenta }}</td>
+            <td>{{ p.stock }}</td>
+
+            <td>
+              <span class="badge activo" *ngIf="p.estado === 'activo'">
+                Activo
+              </span>
+              <span class="badge inactivo" *ngIf="p.estado === 'inactivo'">
+                Inactivo
+              </span>
+            </td>
+
+            <td class="acciones">
+              <button class="btn-edit">Editar</button>
+              <button class="btn-delete">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+
+</div>
