@@ -1,0 +1,35 @@
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h3>ERP Willatec</h3>
+
+    <nav>
+      <a routerLink="/">Dashboard</a>
+      <a routerLink="/productos">Productos</a>
+      <a routerLink="/usuarios">Usuarios</a>
+    </nav>
+  </aside>
+
+  <!-- CONTENIDO -->
+  <div class="content">
+    <header class="header">
+      <button (click)="logout()">Cerrar sesión</button>
+    </header>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+</div>
+
+<div style="display: flex;">
+  
+  <app-sidebar></app-sidebar>
+
+  <div style="flex: 1; padding: 20px;">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
