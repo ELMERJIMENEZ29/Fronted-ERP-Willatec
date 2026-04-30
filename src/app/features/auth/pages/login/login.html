@@ -1,13 +1,52 @@
-<h2>Login</h2>
+<div class="login-container">
 
-<form (ngSubmit)="login()">
-  <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required />
+  <div class="left-panel">
+    <h1>ERP Empresarial</h1>
+    <p>Sistema de gestión empresarial</p>
+  </div>
 
-  <br /><br />
+  <div class="right-panel">
+    <div class="login-card">
 
-  <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required />
+      <h2>Iniciar Sesión</h2>
 
-  <br /><br />
+      <!-- ERROR -->
+      <div *ngIf="error" class="error">
+        {{ error }}
+      </div>
 
-  <button type="submit">Ingresar</button>
-</form>
+      <form (ngSubmit)="login()">
+
+        <!-- EMAIL -->
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="usuario@empresa.com"
+        />
+
+        <!-- PASSWORD -->
+        <div class="password-container">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Contraseña"
+          />
+
+          <button type="button" (click)="showPassword = !showPassword">
+            {{ showPassword ? 'Ocultar' : 'Ver' }}
+          </button>
+        </div>
+
+        <!-- BOTÓN -->
+        <button type="submit" [disabled]="loading">
+          {{ loading ? 'Ingresando...' : 'Ingresar' }}
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>
