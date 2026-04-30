@@ -39,4 +39,9 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
-}
+
+  hasRole(role: string): Boolean {
+    const user = this.getUser();
+    return  user?.roles?.some((r: any) => r.name === role);
+    }
+    }
