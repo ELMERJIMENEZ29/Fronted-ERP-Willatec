@@ -1,1 +1,42 @@
-<p>productos works!</p>
+<h2>Productos</h2>
+
+<button (click)="getProductos()">Recargar</button>
+
+<br /><br />
+
+<table border="1" width="100%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Precio</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let p of productos">
+      <td>{{ p.id }}</td>
+      <td>{{ p.nombre }}</td>
+      <td>{{ p.marca }}</td>
+      <td>{{ p.modelo }}</td>
+      <td>{{ p.precio_referencial }}</td>
+      <td>
+        <span *ngIf="p.activo">Activo</span>
+        <span *ngIf="!p.activo">Inactivo</span>
+      </td>
+      <td>
+        <button (click)="desactivar(p.id)" *ngIf="p.activo">
+          Desactivar
+        </button>
+
+        <button (click)="activar(p.id)" *ngIf="!p.activo">
+          Activar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
